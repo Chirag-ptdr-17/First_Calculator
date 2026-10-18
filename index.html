@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#090909">
+  <meta name="description" content="A fast, free scientific calculator for your browser.">
+  <title>Nova — Scientific Calculator</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+  <script src="app.js" defer></script>
+</head>
+<body>
+  <main class="app-shell">
+    <header class="topbar">
+      <a class="brand" href="./" aria-label="Nova calculator home"><span class="brand-mark">N</span><span>NOVA<span class="brand-dot">.</span></span></a>
+      <div class="topbar-controls">
+        <label class="select-wrap" aria-label="Angle unit">
+          <span class="control-label">ANGLE</span>
+          <select id="angle-mode"><option value="DEG">DEG</option><option value="RAD">RAD</option></select>
+        </label>
+        <button class="theme-toggle" id="theme-toggle" type="button" aria-label="Switch theme">
+          <span class="theme-icon" aria-hidden="true">☼</span><span id="theme-label">Light</span>
+        </button>
+      </div>
+    </header>
+
+    <section class="workspace" aria-label="Scientific calculator">
+      <div class="calculator-card">
+        <div class="card-heading"><div><p class="eyebrow">PRECISION, SIMPLIFIED</p><h1>Scientific calculator</h1></div><span class="ready-badge"><i></i> READY</span></div>
+        <div class="display" id="display-wrap">
+          <div class="display-meta"><span id="status">Enter an expression</span><span id="memory-indicator" hidden>M</span></div>
+          <input id="expression" type="text" inputmode="none" autocomplete="off" autocapitalize="off" spellcheck="false" aria-label="Calculator expression" placeholder="0">
+          <div class="result-line" id="result-line" aria-live="polite"></div>
+        </div>
+
+        <div class="utility-row">
+          <button class="utility-key" data-key="MC" type="button">MC</button><button class="utility-key" data-key="MR" type="button">MR</button><button class="utility-key" data-key="M+" type="button">M+</button><button class="utility-key" data-key="M-" type="button">M−</button><button class="utility-key" data-key="MS" type="button">MS</button>
+        </div>
+        <div class="keypad" id="keypad">
+          <button class="key function" data-insert="sin(" type="button">sin</button><button class="key function" data-insert="cos(" type="button">cos</button><button class="key function" data-insert="tan(" type="button">tan</button><button class="key function" data-insert="asin(" type="button">sin⁻¹</button><button class="key function" data-insert="acos(" type="button">cos⁻¹</button><button class="key function" data-insert="atan(" type="button">tan⁻¹</button>
+          <button class="key function" data-insert="sinh(" type="button">sinh</button><button class="key function" data-insert="cosh(" type="button">cosh</button><button class="key function" data-insert="tanh(" type="button">tanh</button><button class="key function" data-insert="ln(" type="button">ln</button><button class="key function" data-insert="log(" type="button">log</button><button class="key function" data-insert="log2(" type="button">log₂</button>
+          <button class="key function" data-insert="sqrt(" type="button">√</button><button class="key function" data-insert="cbrt(" type="button">∛</button><button class="key function" data-insert="^2" type="button">x²</button><button class="key function" data-insert="^" type="button">xʸ</button><button class="key function" data-insert="1/(" type="button">1/x</button><button class="key function" data-insert="factorial(" type="button">n!</button>
+          <button class="key function" data-insert="π" type="button">π</button><button class="key function" data-insert="e" type="button">e</button><button class="key function" data-insert="(" type="button">(</button><button class="key function" data-insert=")" type="button">)</button><button class="key utility" data-action="backspace" type="button" aria-label="Backspace">⌫</button><button class="key clear" data-action="clear" type="button">AC</button>
+          <button class="key number" data-insert="7" type="button">7</button><button class="key number" data-insert="8" type="button">8</button><button class="key number" data-insert="9" type="button">9</button><button class="key operator" data-insert="÷" type="button">÷</button><button class="key operator" data-insert="%" type="button">%</button><button class="key utility" data-insert="ans" type="button">Ans</button>
+          <button class="key number" data-insert="4" type="button">4</button><button class="key number" data-insert="5" type="button">5</button><button class="key number" data-insert="6" type="button">6</button><button class="key operator" data-insert="×" type="button">×</button><button class="key operator" data-insert="−" type="button">−</button><button class="key utility" data-action="sign" type="button">±</button>
+          <button class="key number" data-insert="1" type="button">1</button><button class="key number" data-insert="2" type="button">2</button><button class="key number" data-insert="3" type="button">3</button><button class="key operator" data-insert="+" type="button">+</button><button class="key function" data-insert="exp(" type="button">exp</button><button class="key function" data-insert="abs(" type="button">abs</button>
+          <button class="key utility" data-action="clear-entry" type="button">CE</button><button class="key number" data-insert="0" type="button">0</button><button class="key number" data-insert="." type="button">.</button><button class="key equals" data-action="equals" type="button">=</button><button class="key function" data-insert="floor(" type="button">floor</button><button class="key function" data-insert="ceil(" type="button">ceil</button>
+        </div>
+        <footer class="calculator-footer"><span>Keyboard ready</span><span><kbd>Enter</kbd> calculate <span class="footer-sep">·</span> <kbd>Esc</kbd> clear</span></footer>
+      </div>
+
+      <aside class="history-card" aria-label="Calculation history">
+        <div class="history-heading"><div><p class="eyebrow">YOUR SESSION</p><h2>History</h2></div><button id="clear-history" class="icon-button" type="button" aria-label="Clear history" title="Clear history">⌫</button></div>
+        <div id="history-list" class="history-list"><div class="empty-history"><span class="history-symbol">↳</span><p>Your calculations<br>will show up here.</p></div></div>
+        <div class="history-footer">Up to 50 recent calculations</div>
+      </aside>
+    </section>
+    <footer class="page-footer"><span>Free scientific calculator</span><span>Made for curious minds.</span></footer>
+  </main>
+</body>
+</html>
